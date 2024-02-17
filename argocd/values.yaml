@@ -1,0 +1,42 @@
+configs:
+  params:
+    server.insecure: true
+  cmp:
+    create: true
+    plugins:
+      cue:
+        generate:
+          command: ["/usr/bin/cue"]
+          args: ["cmd", "dump", "./..."]
+  repositories:
+    p2p:
+      url: https://github.com/kjubybot/p2p-devops-test.git
+    traefik:
+      url: https://traefik.github.io/charts
+      type: helm
+server:
+  ingress:
+    enabled: true
+    hostname: argocd.k8s.orb.local
+    annotations:
+      traefik.ingress.kubernetes.io/router.tls: "true"
+repoServer:
+  extraContainers:
+    - name: cue-plugin
+      command: ["/var/run/argocd/argocd-cmp-server"]
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+      image: cuelang/cue:0.7.1
+      volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
+        - mountPath: /home/argocd/cmp-server/plugins
+          name: plugins
+        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          subPath: cue.yaml
+          name: argocd-cmp-cm
+  volumes:
+    - name: argocd-cmp-cm
+      configMap:
+        name: argocd-cmp-cm
