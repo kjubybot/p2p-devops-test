@@ -49,7 +49,7 @@ roleBinding: [Name=_]: rbacv1.#RoleBinding & {
 		namespace: Name
 	}
 	roleRef: {
-		apiGroup: "rbac.authorization.k8s.io/v1"
+		apiGroup: "rbac.authorization.k8s.io"
 		kind: "Role"
 		name: *Name | string
 	}
