@@ -2,8 +2,9 @@ package apps
 
 appSpec: uselessapp: {
 	repo:     "https://github.com/kjubybot/p2p-devops-test.git"
-	path: "webapp/chart"
+	path:     "webapp/chart"
 	revision: "dev"
+	destNamespace: "default"
 	values: {
 		replicaCount: 3
 		ingress: {
@@ -12,16 +13,16 @@ appSpec: uselessapp: {
 			hosts: [{
 				host: "uselessapp.\(_baseUrl)"
 				paths: [{
-					path: "/"
+					path:     "/"
 					pathType: "Prefix"
 				}]
 			}]
 		}
 		resources: requests: cpu: "10m"
 		autoscaling: {
-			enabled: true
-			minReplicas: 3
-			maxReplicas: 5
+			enabled:                        true
+			minReplicas:                    3
+			maxReplicas:                    5
 			targetCPUUtilizationPercentage: 80
 		}
 	}

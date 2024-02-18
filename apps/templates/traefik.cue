@@ -5,4 +5,6 @@ appSpec: traefik: {
 	revision:      "26.0.0"
 	chart:         "traefik"
 	destNamespace: "traefik"
+
+	values:	ports: web: redirectTo: port: "websecure"
 }

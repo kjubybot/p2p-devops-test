@@ -5,13 +5,13 @@ import argoapp "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 _baseUrl: "k8s.orb.local"
 
 appSpec: [Name=_]: {
-	name:      *Name | string
-	namespace: *"argocd" | string
-	project:   *"default" | string
-	repo:      string
-	path?:     string
-	revision:  string
-	chart?:    string
+	name:          *Name | string
+	namespace:     *"argocd" | string
+	project:       *"default" | string
+	repo:          string
+	path?:         string
+	revision:      string
+	chart?:        string
 	plugin?:       string
 	destNamespace: *"argocd" | string
 	values?: {}
