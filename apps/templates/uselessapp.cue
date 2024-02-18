@@ -23,7 +23,7 @@ appSpec: uselessapp: {
 			enabled:                        true
 			minReplicas:                    3
 			maxReplicas:                    5
-			targetCPUUtilizationPercentage: 80
+			targetCPUUtilizationPercentage: 70
 		}
 	}
 }
