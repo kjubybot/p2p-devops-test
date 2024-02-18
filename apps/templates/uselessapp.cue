@@ -4,7 +4,6 @@ appSpec: uselessapp: {
 	repo:     "https://github.com/kjubybot/p2p-devops-test.git"
 	path: "webapp/chart"
 	revision: "dev"
-	chart: "uselessapp"
 	values: {
 		replicaCount: 3
 		ingress: {
