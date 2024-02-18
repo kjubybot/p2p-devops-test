@@ -7,7 +7,7 @@ appSpec: traefik: {
 	destNamespace: "traefik"
 
 	values:	{
-		additionalArguments: ["--providers.kubernetesingress.ingressendpoint.publishedservice=NAMESPACE/TRAEFIK_SVC_NAME"]
+		additionalArguments: ["--providers.kubernetesingress.ingressendpoint.publishedservice=traefik/traefik"]
 		ports: web: redirectTo: port: "websecure"
 	}
 }
