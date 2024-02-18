@@ -2,6 +2,8 @@ package apps
 
 import argoapp "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 
+_baseUrl: "k8s.orb.local"
+
 appSpec: [Name=_]: {
 	name:      *Name | string
 	namespace: *"argocd" | string
@@ -12,6 +14,7 @@ appSpec: [Name=_]: {
 	chart?:    string
 	plugin?:       string
 	destNamespace: *"argocd" | string
+	values?: {}
 }
 
 apps: {
@@ -36,6 +39,9 @@ apps: {
 					}
 					if v.plugin != null {
 						plugin: name: v.plugin
+					}
+					if v.values != null {
+						helm: valuesObject: v.values
 					}
 				}
 				destination: {

@@ -40,20 +40,3 @@ repoServer:
     - name: argocd-cmp-cm
       configMap:
         name: argocd-cmp-cm
-extraObjects:
-  - apiVersion: argoproj.io/v1alpha1
-    kind: Application
-    metadata:
-      name: apps
-      namespace: argocd
-    spec:
-      project: default
-      source:
-        path: apps
-        repoURL: https://github.com/kjubybot/p2p-devops-test.git
-        targetRevision: dev
-      destination:
-        namespace: argocd
-        server: https://kubernetes.default.svc
-      syncPolicy:
-        automated: {}
