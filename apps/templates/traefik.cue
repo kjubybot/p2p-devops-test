@@ -6,5 +6,8 @@ appSpec: traefik: {
 	chart:         "traefik"
 	destNamespace: "traefik"
 
-	values:	ports: web: redirectTo: port: "websecure"
+	values:	{
+		additionalArguments: ["--providers.kubernetesingress.ingressendpoint.publishedservice=NAMESPACE/TRAEFIK_SVC_NAME"]
+		ports: web: redirectTo: port: "websecure"
+	}
 }
